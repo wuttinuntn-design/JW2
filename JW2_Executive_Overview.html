@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JW2 — Executive Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Prompt:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --navy: #0B1F3A;
+  --navy2: #142B50;
+  --gold: #C9973A;
+  --gold2: #E8B85A;
+  --gold-pale: rgba(201,151,58,0.12);
+  --red: #8B1A1A;
+  --teal: #1A7A6E;
+  --teal-pale: rgba(26,122,110,0.12);
+  --blue: #2460A7;
+  --blue-pale: rgba(36,96,167,0.12);
+  --orange: #C45E15;
+  --orange-pale: rgba(196,94,21,0.12);
+  --white: #FFFFFF;
+  --light: #F4F6FA;
+  --mid: #C8D0DC;
+  --text: #0B1F3A;
+  --muted: #6B7A8F;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Sarabun', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  width: 1366px;
+  height: 768px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* BG TEXTURE */
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 20%, rgba(201,151,58,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 85% 80%, rgba(36,96,167,0.08) 0%, transparent 70%),
+    linear-gradient(160deg, #0B1F3A 0%, #0E2444 50%, #0B1F3A 100%);
+  z-index: 0;
+}
+
+.slide {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: 72px 1fr;
+  height: 768px;
+  padding: 0;
+}
+
+/* ═══════════════════════════════ HEADER ═══════════════════════════════ */
+.hdr {
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  border-bottom: 1px solid rgba(201,151,58,0.3);
+  background: rgba(11,31,58,0.8);
+  backdrop-filter: blur(10px);
+  gap: 16px;
+}
+
+.hdr-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--navy);
+  box-shadow: 0 4px 16px rgba(201,151,58,0.4);
+  flex-shrink: 0;
+}
+
+.hdr-text .t1 {
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--gold2);
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+}
+.hdr-text .t2 {
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 1px;
+}
+
+.hdr-divider {
+  width: 1px;
+  height: 30px;
+  background: rgba(201,151,58,0.3);
+}
+
+.hdr-title {
+  font-family: 'Prompt', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 0.3px;
+}
+
+.hdr-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hdr-tag {
+  background: rgba(201,151,58,0.15);
+  border: 1px solid rgba(201,151,58,0.4);
+  color: var(--gold2);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.hdr-date {
+  color: rgba(255,255,255,0.45);
+  font-size: 11px;
+}
+
+/* ═══════════════════════════════ BODY ═══════════════════════════════ */
+.body {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* LEFT PANEL */
+.left-panel {
+  border-right: 1px solid rgba(201,151,58,0.2);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: rgba(201,151,58,0.7);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+/* BIG STAT */
+.big-stat {
+  background: linear-gradient(135deg, rgba(201,151,58,0.15), rgba(201,151,58,0.05));
+  border: 1px solid rgba(201,151,58,0.3);
+  border-radius: 14px;
+  padding: 16px 14px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.big-stat::before {
+  content: '';
+  position: absolute;
+  top: -20px; right: -20px;
+  width: 70px; height: 70px;
+  border-radius: 50%;
+  background: rgba(201,151,58,0.07);
+}
+.big-stat .ico {
+  font-size: 22px;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.big-stat .num {
+  font-family: 'Prompt', sans-serif;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--gold2);
+  line-height: 1;
+}
+.big-stat .unit {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 2px;
+}
+.big-stat .sub {
+  margin-top: 6px;
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+}
+
+/* MINI STATS */
+.mini-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.mini-stat {
+  border-radius: 10px;
+  padding: 10px 10px;
+  border: 1px solid;
+  text-align: center;
+}
+.mini-stat.teal { border-color: rgba(26,122,110,0.4); background: rgba(26,122,110,0.1); }
+.mini-stat.blue { border-color: rgba(36,96,167,0.4); background: rgba(36,96,167,0.1); }
+.mini-stat.orange { border-color: rgba(196,94,21,0.4); background: rgba(196,94,21,0.1); }
+.mini-stat.red { border-color: rgba(139,26,26,0.4); background: rgba(139,26,26,0.1); }
+
+.mini-stat .m-num {
+  font-family: 'Prompt', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+}
+.mini-stat.teal .m-num { color: #4CC9C0; }
+.mini-stat.blue .m-num { color: #6EB4FF; }
+.mini-stat.orange .m-num { color: #F0A05A; }
+.mini-stat.red .m-num { color: #FF8080; }
+
+.mini-stat .m-lbl {
+  font-size: 9px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 3px;
+  line-height: 1.3;
+}
+
+/* EMP LIST */
+.emp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.emp-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 9px 11px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.emp-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.ea1 { background: rgba(201,151,58,0.25); color: var(--gold2); }
+.ea2 { background: rgba(36,96,167,0.3); color: #6EB4FF; }
+.ea3 { background: rgba(26,122,110,0.3); color: #4CC9C0; }
+
+.emp-info .en { font-size: 11px; font-weight: 600; color: var(--white); line-height: 1.2; }
+.emp-info .eid { font-size: 9px; color: rgba(255,255,255,0.4); }
+.emp-status {
+  margin-left: auto;
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+.es-on { background: rgba(26,122,110,0.25); color: #4CC9C0; border: 1px solid rgba(26,122,110,0.4); }
+.es-temp { background: rgba(201,151,58,0.15); color: var(--gold2); border: 1px solid rgba(201,151,58,0.3); }
+
+/* RIGHT PANEL */
+.right-panel {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 0;
+  overflow: hidden;
+}
+
+.top-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 200px;
+  gap: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  overflow: hidden;
+}
+
+.bottom-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  overflow: hidden;
+}
+
+/* PANELS */
+.panel {
+  padding: 16px 18px;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.panel:last-child { border-right: none; }
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+.panel-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.pi-gold { background: rgba(201,151,58,0.2); color: var(--gold2); }
+.pi-blue { background: rgba(36,96,167,0.25); color: #6EB4FF; }
+.pi-teal { background: rgba(26,122,110,0.25); color: #4CC9C0; }
+.pi-orange { background: rgba(196,94,21,0.25); color: #F0A05A; }
+.pi-red { background: rgba(139,26,26,0.3); color: #FF8080; }
+
+.panel-title h3 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white);
+}
+.panel-title .badge {
+  margin-left: auto;
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: rgba(201,151,58,0.12);
+  color: var(--gold2);
+  border: 1px solid rgba(201,151,58,0.25);
+}
+
+/* CHART CANVAS */
+.chart-area {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+/* MONTH BARS */
+.month-bars {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: space-evenly;
+}
+
+.mbar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mbar-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+  width: 28px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.mbar-track {
+  flex: 1;
+  height: 18px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mbar-fill {
+  height: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding-left: 7px;
+  transition: width 1s ease;
+}
+
+.mbar-fill span {
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  white-space: nowrap;
+}
+
+.mbar-val {
+  font-size: 10px;
+  font-weight: 700;
+  width: 30px;
+  text-align: right;
+  color: rgba(255,255,255,0.7);
+  flex-shrink: 0;
+}
+
+/* LEAVE BREAKDOWN */
+.leave-items {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  justify-content: space-evenly;
+}
+
+.leave-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.leave-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.leave-name {
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.7);
+  flex: 1;
+}
+
+.leave-bar-wrap {
+  width: 90px;
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.leave-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.leave-count {
+  font-size: 11px;
+  font-weight: 700;
+  width: 24px;
+  text-align: right;
+  color: rgba(255,255,255,0.8);
+}
+
+/* PERFORMANCE TABLE */
+.perf-wrap {
+  flex: 1;
+  overflow: hidden;
+}
+
+.perf-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10.5px;
+}
+
+.perf-tbl thead th {
+  padding: 6px 8px;
+  text-align: left;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.4);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  white-space: nowrap;
+}
+
+.perf-tbl tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.perf-tbl tbody tr:last-child { border-bottom: none; }
+
+.perf-tbl tbody td {
+  padding: 8px 8px;
+  vertical-align: middle;
+}
+
+.emp-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.rate-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rate-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.rate-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+
+.rate-num {
+  font-size: 10px;
+  font-weight: 700;
+  width: 32px;
+  text-align: right;
+}
+
+/* STATUS BADGES */
+.status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/* ATTENDANCE HEATMAP-STYLE */
+.att-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.att-emp-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.att-emp-name {
+  font-size: 10px;
+  color: rgba(255,255,255,0.6);
+  width: 90px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.att-cells {
+  display: flex;
+  gap: 2px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.att-cell {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* DIVIDER GOLD LINE */
+.gold-line {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+
+/* SUMMARY PILLS */
+.summary-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+.pill {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 9.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.pill-g { background: rgba(26,122,110,0.2); color: #4CC9C0; border: 1px solid rgba(26,122,110,0.35); }
+.pill-y { background: rgba(201,151,58,0.2); color: var(--gold2); border: 1px solid rgba(201,151,58,0.35); }
+.pill-r { background: rgba(139,26,26,0.25); color: #FF8080; border: 1px solid rgba(139,26,26,0.4); }
+
+/* FOOTER */
+.slide-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--blue) 50%, var(--teal) 100%);
+}
+
+/* ANIMATED RING */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<div class="slide">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-brand">
+      <div class="logo-circle">JW2</div>
+      <div class="hdr-text">
+        <div class="t1">JW2 OUTSOURCE</div>
+        <div class="t2">WORKFORCE MANAGEMENT</div>
+      </div>
+    </div>
+    <div class="hdr-divider"></div>
+    <div class="hdr-title">รายงานสรุปผลการปฏิบัติงาน — ภาพรวมผู้บริหาร</div>
+    <div class="hdr-right">
+      <div class="hdr-tag"><i class="fas fa-forklift" style="margin-right:5px;font-size:10px"></i>พนักงานขับรถโฟร์คลิฟท์</div>
+      <div class="hdr-date"><i class="far fa-calendar-alt" style="margin-right:4px;"></i>มกราคม – พฤษภาคม 2026</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+      <div>
+        <div class="section-label">กำลังพล</div>
+        <div class="gold-line"></div>
+      </div>
+
+      <!-- BIG STAT -->
+      <div class="big-stat">
+        <div class="ico"><i class="fas fa-users"></i></div>
+        <div class="num">3</div>
+        <div class="unit">พนักงานประจำ</div>
+        <div class="sub">+ 4 พนักงานสำรอง (ชั่วคราว)</div>
+      </div>
+
+      <!-- MINI STATS -->
+      <div class="mini-stat-grid">
+        <div class="mini-stat teal">
+          <div class="m-num">84%</div>
+          <div class="m-lbl">อัตราการเข้างานเฉลี่ย</div>
+        </div>
+        <div class="mini-stat blue">
+          <div class="m-num">5</div>
+          <div class="m-lbl">เดือนที่ติดตาม</div>
+        </div>
+        <div class="mini-stat orange">
+          <div class="m-num">28</div>
+          <div class="m-lbl">วันลารวมทั้งหมด</div>
+        </div>
+        <div class="mini-stat red">
+          <div class="m-num">4</div>
+          <div class="m-lbl">วันพักงาน (เม.ย.)</div>
+        </div>
+      </div>
+
+      <!-- EMP LIST -->
+      <div>
+        <div class="section-label">รายชื่อพนักงาน</div>
+        <div class="gold-line"></div>
+      </div>
+      <div class="emp-list">
+        <div class="emp-card">
+          <div class="emp-avatar ea1">ช</div>
+          <div class="emp-info">
+            <div class="en">นายชรินทร์ บินสระตอ</div>
+            <div class="eid">JW0023 · เริ่ม พ.ค. 2567</div>
+          </div>
+          <div class="emp-status es-on">ประจำ</div>
+        </div>
+        <div class="emp-card">
+          <div class="emp-avatar ea2">ก</div>
+          <div class="emp-info">
+            <div class="en">นายกฤษดา หมัดพิทักษ์</div>
+            <div class="eid">JW0025 · เริ่ม พ.ย. 2567</div>
+          </div>
+          <div class="emp-status es-on">ประจำ</div>
+        </div>
+        <div class="emp-card">
+          <div class="emp-avatar ea3">น</div>
+          <div class="emp-info">
+            <div class="en">นายนพดล กันทวงศ์</div>
+            <div class="eid">JW0027 · เริ่ม ม.ค. 2569</div>
+          </div>
+          <div class="emp-status es-on">ประจำ</div>
+        </div>
+      </div>
+
+      <div class="summary-pills">
+        <div class="pill pill-g"><i class="fas fa-circle" style="font-size:7px"></i>เข้างานตรงเวลา</div>
+        <div class="pill pill-y"><i class="fas fa-circle" style="font-size:7px"></i>มีวันลา</div>
+        <div class="pill pill-r"><i class="fas fa-circle" style="font-size:7px"></i>พักงาน</div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+      <!-- TOP ROW -->
+      <div class="top-section">
+
+        <!-- Panel 1: Monthly Work Days Bar Chart -->
+        <div class="panel">
+          <div class="panel-title">
+            <div class="panel-icon pi-gold"><i class="fas fa-chart-bar"></i></div>
+            <h3>วันทำงานรายเดือน (รวม 3 คน)</h3>
+            <span class="badge">ม.ค. – พ.ค. 2569</span>
+          </div>
+          <div class="month-bars">
+            <!-- JAN: 22+22+16=60 max~75 -->
+            <div class="mbar-row">
+              <div class="mbar-label">ม.ค.</div>
+              <div class="mbar-track">
+                <div class="mbar-fill" style="width:80%; background:linear-gradient(90deg,#C9973A,#E8B85A);">
+                  <span>60 วัน</span>
+                </div>
+              </div>
+              <div class="mbar-val">60</div>
+            </div>
+            <!-- FEB: 12+11+11=34 -->
+            <div class="mbar-row">
+              <div class="mbar-label">ก.พ.</div>
+              <div class="mbar-track">
+                <div class="mbar-fill" style="width:45%; background:linear-gradient(90deg,#2460A7,#6EB4FF);">
+                  <span>34 วัน</span>
+                </div>
+              </div>
+              <div class="mbar-val">34</div>
+            </div>
+            <!-- MAR: 22+21+24=67 -->
+            <div class="mbar-row">
+              <div class="mbar-label">มี.ค.</div>
+              <div class="mbar-track">
+                <div class="mbar-fill" style="width:89%; background:linear-gradient(90deg,#1A7A6E,#4CC9C0);">
+                  <span>67 วัน</span>
+                </div>
+              </div>
+              <div class="mbar-val">67</div>
+            </div>
+            <!-- APR: 19+21+9=49 -->
+            <div class="mbar-row">
+              <div class="mbar-label">เม.ย.</div>
+              <div class="mbar-track">
+                <div class="mbar-fill" style="width:65%; background:linear-gradient(90deg,#C45E15,#F0A05A);">
+                  <span>49 วัน</span>
+                </div>
+              </div>
+              <div class="mbar-val">49</div>
+            </div>
+            <!-- MAY (ถึง 17): 8+9+9=26 -->
+            <div class="mbar-row">
+              <div class="mbar-label">พ.ค.*</div>
+              <div class="mbar-track">
+                <div class="mbar-fill" style="width:35%; background:linear-gradient(90deg,#8B1A1A,#FF8080);">
+                  <span>26 วัน</span>
+                </div>
+              </div>
+              <div class="mbar-val">26</div>
+            </div>
+          </div>
+          <div style="font-size:8.5px;color:rgba(255,255,255,0.3);margin-top:6px;">*พ.ค. ข้อมูล ณ 17 พ.ค. 2569</div>
+        </div>
+
+        <!-- Panel 2: Attendance Donut Chart -->
+        <div class="panel">
+          <div class="panel-title">
+            <div class="panel-icon pi-teal"><i class="fas fa-chart-pie"></i></div>
+            <h3>สัดส่วนการเข้า-ออกงาน (รวม)</h3>
+          </div>
+          <div class="chart-area">
+            <canvas id="donutChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Panel 3: Leave Type Breakdown -->
+        <div class="panel">
+          <div class="panel-title">
+            <div class="panel-icon pi-orange"><i class="fas fa-calendar-times"></i></div>
+            <h3>ประเภทการลา</h3>
+          </div>
+          <div class="leave-items">
+            <div class="leave-item">
+              <div class="leave-dot" style="background:#E8B85A;"></div>
+              <div class="leave-name">ลาพักร้อน</div>
+              <div class="leave-bar-wrap"><div class="leave-bar-fill" style="width:75%;background:#E8B85A;"></div></div>
+              <div class="leave-count">9</div>
+            </div>
+            <div class="leave-item">
+              <div class="leave-dot" style="background:#6EB4FF;"></div>
+              <div class="leave-name">ลาป่วย (มีใบ)</div>
+              <div class="leave-bar-wrap"><div class="leave-bar-fill" style="width:25%;background:#6EB4FF;"></div></div>
+              <div class="leave-count">3</div>
+            </div>
+            <div class="leave-item">
+              <div class="leave-dot" style="background:#FF8080;"></div>
+              <div class="leave-name">ลาป่วย (ไม่มีใบ)</div>
+              <div class="leave-bar-wrap"><div class="leave-bar-fill" style="width:42%;background:#FF8080;"></div></div>
+              <div class="leave-count">5</div>
+            </div>
+            <div class="leave-item">
+              <div class="leave-dot" style="background:#4CC9C0;"></div>
+              <div class="leave-name">ลากิจ</div>
+              <div class="leave-bar-wrap"><div class="leave-bar-fill" style="width:58%;background:#4CC9C0;"></div></div>
+              <div class="leave-count">7</div>
+            </div>
+            <div class="leave-item">
+              <div class="leave-dot" style="background:#F0A05A;"></div>
+              <div class="leave-name">ลาบวช</div>
+              <div class="leave-bar-wrap"><div class="leave-bar-fill" style="width:25%;background:#F0A05A;"></div></div>
+              <div class="leave-count">3</div>
+            </div>
+            <div class="leave-item">
+              <div class="leave-dot" style="background:#B89AFF;"></div>
+              <div class="leave-name">อื่นๆ / วันหยุด</div>
+              <div class="leave-bar-wrap"><div class="leave-bar-fill" style="width:8%;background:#B89AFF;"></div></div>
+              <div class="leave-count">1</div>
+            </div>
+          </div>
+          <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.07);font-size:9.5px;color:rgba(255,255,255,0.4);">
+            <span style="color:rgba(255,255,255,0.6);font-weight:600;">รวมวันลา:</span> 28 วัน (5 เดือน)
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM ROW -->
+      <div class="bottom-section">
+
+        <!-- Panel 4: Per Employee Performance Table -->
+        <div class="panel">
+          <div class="panel-title">
+            <div class="panel-icon pi-blue"><i class="fas fa-table"></i></div>
+            <h3>สรุปผลการทำงานรายบุคคล</h3>
+          </div>
+          <div class="perf-wrap">
+            <table class="perf-tbl">
+              <thead>
+                <tr>
+                  <th>พนักงาน</th>
+                  <th>ม.ค.</th>
+                  <th>ก.พ.</th>
+                  <th>มี.ค.</th>
+                  <th>เม.ย.</th>
+                  <th>พ.ค.*</th>
+                  <th>รวมวันลา</th>
+                  <th>อัตราเข้างาน</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="emp-name-cell">
+                      <div class="dot-avatar ea1" style="width:22px;height:22px;font-size:8px;">ช</div>
+                      <span style="font-size:10px;color:rgba(255,255,255,0.85);">ชรินทร์</span>
+                    </div>
+                  </td>
+                  <td style="color:#4CC9C0;font-weight:700;font-size:11px;">22</td>
+                  <td style="color:#E8B85A;font-weight:700;font-size:11px;">12</td>
+                  <td style="color:#4CC9C0;font-weight:700;font-size:11px;">22</td>
+                  <td style="color:#4CC9C0;font-weight:700;font-size:11px;">19</td>
+                  <td style="color:#4CC9C0;font-weight:700;font-size:11px;">8</td>
+                  <td><span style="background:rgba(201,151,58,0.2);color:#E8B85A;padding:2px 7px;border-radius:8px;font-size:9.5px;font-weight:700;">13 วัน</span></td>
+                  <td>
+                    <div class="rate-bar">
+                      <div class="rate-track"><div class="rate-fill" style="width:86%;background:linear-gradient(90deg,#1A7A6E,#4CC9C0);"></div></div>
+                      <div class="rate-num" style="color:#4CC9C0;">86%</div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="emp-name-cell">
+                      <div class="dot-avatar ea2" style="width:22px;height:22px;font-size:8px;">ก</div>
+                      <span style="font-size:10px;color:rgba(255,255,255,0.85);">กฤษดา</span>
+                    </div>
+                  </td>
+                  <td style="color:#4CC9C0;font-weight:700;font-size:11px;">22</td>
+                  <td style="color:#E8B85A;font-weight:700;font-size:11px;">11</td>
+                  <td style="color:#4CC9C0;font-weight:700;font-size:11px;">21</td>
+                  <td style="color:#4CC9C0;font-weight:700;font-size:11px;">21</td>
+                  <td style="color:#4CC9C0;font-weight:700;font-size:11px;">9</td>
+                  <td><span style="background:rgba(201,151,58,0.2);color:#E8B85A;padding:2px 7px;border-radius:8px;font-size:9.5px;font-weight:700;">10 วัน</span></td>
+                  <td>
+                    <div class="rate-bar">
+                      <div class="rate-track"><div class="rate-fill" style="width:88%;background:linear-gradient(90deg,#2460A7,#6EB4FF);"></div></div>
+                      <div class="rate-num" style="color:#6EB4FF;">88%</div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="emp-name-cell">
+                      <div class="dot-avatar ea3" style="width:22px;height:22px;font-size:8px;">น</div>
+                      <span style="font-size:10px;color:rgba(255,255,255,0.85);">นพดล</span>
+                    </div>
+                  </td>
+                  <td style="color:#E8B85A;font-weight:700;font-size:11px;">16</td>
+                  <td style="color:#E8B85A;font-weight:700;font-size:11px;">11</td>
+                  <td style="color:#4CC9C0;font-weight:700;font-size:11px;">24</td>
+                  <td style="color:#FF8080;font-weight:700;font-size:11px;">9</td>
+                  <td style="color:#4CC9C0;font-weight:700;font-size:11px;">9</td>
+                  <td><span style="background:rgba(139,26,26,0.25);color:#FF8080;padding:2px 7px;border-radius:8px;font-size:9.5px;font-weight:700;">8+4 วัน</span></td>
+                  <td>
+                    <div class="rate-bar">
+                      <div class="rate-track"><div class="rate-fill" style="width:72%;background:linear-gradient(90deg,#8B1A1A,#FF8080);"></div></div>
+                      <div class="rate-num" style="color:#FF8080;">72%</div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Note on นพดล -->
+          <div style="margin-top:10px;padding:8px 10px;background:rgba(139,26,26,0.12);border:1px solid rgba(139,26,26,0.3);border-radius:8px;font-size:9.5px;color:rgba(255,150,150,0.85);display:flex;align-items:center;gap:7px;">
+            <i class="fas fa-exclamation-triangle" style="color:#FF8080;font-size:11px;"></i>
+            <span><strong style="color:#FF8080;">นายนพดล กันทวงศ์</strong> — มีวันพักงาน 4 วัน ในเดือน เม.ย. 2569 และเริ่มงานวันที่ 12 ม.ค. 2569</span>
+          </div>
+        </div>
+
+        <!-- Panel 5: Employee Attendance Line Chart -->
+        <div class="panel">
+          <div class="panel-title">
+            <div class="panel-icon pi-teal"><i class="fas fa-chart-line"></i></div>
+            <h3>เปรียบเทียบวันทำงานรายเดือน (รายบุคคล)</h3>
+          </div>
+          <div class="chart-area">
+            <canvas id="lineChart"></canvas>
+          </div>
+          <div style="display:flex;gap:14px;margin-top:8px;flex-shrink:0;">
+            <div style="display:flex;align-items:center;gap:5px;font-size:9.5px;color:rgba(255,255,255,0.55);">
+              <div style="width:16px;height:3px;border-radius:2px;background:#E8B85A;"></div>ชรินทร์
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:9.5px;color:rgba(255,255,255,0.55);">
+              <div style="width:16px;height:3px;border-radius:2px;background:#6EB4FF;"></div>กฤษดา
+            </div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:9.5px;color:rgba(255,255,255,0.55);">
+              <div style="width:16px;height:3px;border-radius:2px;background:#4CC9C0;"></div>นพดล
+            </div>
+            <div style="margin-left:auto;font-size:8.5px;color:rgba(255,255,255,0.3);">*ก.พ. = 28 วัน (ครึ่งเดือนข้อมูล)</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer"></div>
+</div>
+
+<script>
+Chart.defaults.color = 'rgba(255,255,255,0.45)';
+Chart.defaults.font.family = 'Sarabun';
+Chart.defaults.font.size = 10;
+
+// Donut Chart
+const donutCtx = document.getElementById('donutChart').getContext('2d');
+new Chart(donutCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['เข้างานปกติ', 'วันลา', 'วันพักงาน', 'วันหยุดนักขัตฤกษ์'],
+    datasets: [{
+      data: [236, 28, 4, 12],
+      backgroundColor: [
+        'rgba(26,122,110,0.85)',
+        'rgba(201,151,58,0.85)',
+        'rgba(139,26,26,0.85)',
+        'rgba(84,110,122,0.7)',
+      ],
+      borderColor: 'rgba(11,31,58,0.8)',
+      borderWidth: 2,
+      hoverOffset: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    cutout: '65%',
+    plugins: {
+      legend: {
+        position: 'right',
+        labels: {
+          boxWidth: 10,
+          boxHeight: 10,
+          padding: 10,
+          font: { size: 10 },
+          color: 'rgba(255,255,255,0.6)',
+        }
+      },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => ` ${ctx.label}: ${ctx.parsed} วัน`
+        }
+      }
+    }
+  },
+  plugins: [{
+    id: 'center-text',
+    afterDraw(chart) {
+      const { ctx, chartArea: { left, right, top, bottom } } = chart;
+      const cx = (left + right) / 2;
+      const cy = (top + bottom) / 2;
+      ctx.save();
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#E8B85A';
+      ctx.font = 'bold 20px Prompt';
+      ctx.fillText('84%', cx, cy - 7);
+      ctx.fillStyle = 'rgba(255,255,255,0.4)';
+      ctx.font = '9px Sarabun';
+      ctx.fillText('อัตราเฉลี่ย', cx, cy + 10);
+      ctx.restore();
+    }
+  }]
+});
+
+// Line Chart
+const lineCtx = document.getElementById('lineChart').getContext('2d');
+new Chart(lineCtx, {
+  type: 'line',
+  data: {
+    labels: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.*'],
+    datasets: [
+      {
+        label: 'ชรินทร์',
+        data: [22, 12, 22, 19, 8],
+        borderColor: '#E8B85A',
+        backgroundColor: 'rgba(201,151,58,0.08)',
+        pointBackgroundColor: '#E8B85A',
+        pointBorderColor: '#0B1F3A',
+        pointBorderWidth: 2,
+        pointRadius: 5,
+        borderWidth: 2.5,
+        tension: 0.3,
+        fill: true,
+      },
+      {
+        label: 'กฤษดา',
+        data: [22, 11, 21, 21, 9],
+        borderColor: '#6EB4FF',
+        backgroundColor: 'rgba(110,180,255,0.06)',
+        pointBackgroundColor: '#6EB4FF',
+        pointBorderColor: '#0B1F3A',
+        pointBorderWidth: 2,
+        pointRadius: 5,
+        borderWidth: 2.5,
+        tension: 0.3,
+        fill: true,
+      },
+      {
+        label: 'นพดล',
+        data: [16, 11, 24, 9, 9],
+        borderColor: '#4CC9C0',
+        backgroundColor: 'rgba(76,201,192,0.06)',
+        pointBackgroundColor: '#4CC9C0',
+        pointBorderColor: '#0B1F3A',
+        pointBorderWidth: 2,
+        pointRadius: 5,
+        borderWidth: 2.5,
+        tension: 0.3,
+        fill: true,
+      },
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: 'rgba(11,31,58,0.92)',
+        borderColor: 'rgba(201,151,58,0.4)',
+        borderWidth: 1,
+        callbacks: {
+          label: (ctx) => ` ${ctx.dataset.label}: ${ctx.parsed.y} วัน`
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: 'rgba(255,255,255,0.05)' },
+        ticks: { color: 'rgba(255,255,255,0.45)', font: { size: 10 } },
+        border: { color: 'rgba(255,255,255,0.1)' },
+      },
+      y: {
+        grid: { color: 'rgba(255,255,255,0.05)' },
+        ticks: { color: 'rgba(255,255,255,0.45)', font: { size: 10 }, stepSize: 5 },
+        border: { color: 'rgba(255,255,255,0.1)' },
+        min: 0,
+        max: 28,
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
